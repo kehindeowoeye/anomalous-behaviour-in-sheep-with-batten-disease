@@ -1,0 +1,161 @@
+
+
+% global rrr 
+% rrr =[];c2=[];
+% %GMM
+% acc=[];b= LSG(:,2);data = m3;gh = 0:4:size(data,2)-2;c = LSG(:,5);yy=1:11;
+% for j = 1:size(data,2)
+%   %x = data(:,gh(j)+1:gh(j+1));
+%   x = data(:,j);
+%   gm = fitgmdist(x,2,'RegularizationValue',0.1);
+%   idx = cluster(gm,x);
+%   v1 = (find(idx==1));
+%   v2 = (find(idx==2));
+%   if length(v1)<length(v2)
+%         acc = vertcat(acc,[b(v1),c(v1)]);
+%   elseif length(v2)<length(v1)
+%         acc = vertcat(acc, [b(v2),c(v2)]);
+%   else
+%   end
+%   
+%   
+% end
+
+
+
+
+global rrr;global gv;global m3;
+rrr =[];c2=[];
+%GMM
+acc=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:11;
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);
+  gm = fitgmdist(x,2,'RegularizationValue',0.1);
+  idx = cluster(gm,x);
+  v1 = (find(idx==1));
+  v2 = (find(idx==2));
+  if length(v1)<length(v2)
+        acc = vertcat(acc,yy(v1));
+  elseif length(v2)<length(v1)
+        acc = vertcat(acc, yy(v2));
+  else
+  end
+  
+  
+    c1 = intersect(acc,yy(:,11-v+1:end));
+    c1 = length(c1)/length(yy(:,11-v+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);
+    acc=[];
+  
+end
+
+rrr = vertcat(rrr,c2);c2=[];
+
+
+% %kmeans
+% acc=[];b  = LSG(:,2);data = m3;
+% for j = 1:size(data,2)
+%      x = data(:,j);
+%     kk = kmeans(x,2);
+%     v1 = (find(kk==1));
+%     v2 = (find(kk==2));
+% 
+%      if length(v1)<length(v2)
+%         acc = vertcat(acc,[b(v1),c(v1)]);
+%   elseif length(v2)<length(v1)
+%         acc = vertcat(acc, [b(v2),c(v2)]);
+%   else
+%   end
+% end
+
+
+acc=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:11;
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);
+  kk = kmeans(x,2);
+  v1 = (find(idx==1));
+  v2 = (find(idx==2));
+  if length(v1)<length(v2)
+        acc = vertcat(acc,yy(v1));
+  elseif length(v2)<length(v1)
+        acc = vertcat(acc, yy(v2));
+  else
+  end
+  
+  
+    c1 = intersect(acc,yy(:,11-v+1:end));
+    c1 = length(c1)/length(yy(:,11-v+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);
+    acc=[];
+end
+
+rrr = vertcat(rrr,c2);c2=[];
+
+
+
+
+
+
+%yy = LSG(:,2);plain m3
+yy = 1:11;
+ac=[];ac1 =[]; 
+for i = 1:length(m3)
+    p = m3(:,i);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+    yu=[];
+    
+    for kk = 1:length(y)
+        yu = horzcat(yu,find(p==y(kk)));
+    end
+    c1 = intersect(yu,yy(:,11-v+1:end));
+    c1 = length(c1)/length(yy(:,11-v+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);
+%     ac1 = vertcat(ac1,y);
+%     for j = 1:length(y)
+%        [a,b] = (find(abs(m3-y(j))<eps)); %find(abs(X(:,1 )-17.9203)<eps)(find(abs(p-y(j))<eps));
+%        yy1 = yy(a);
+%       
+%     end 
+end
+%[a,b]=hist(ac,unique(ac));
+rrr = vertcat(rrr,c2);c2=[];
+
+
+
+%yy = LSG(:,2);log of m3
+yy = 1:11;c2=[];
+ac=[];ac1 =[]; 
+for i = 1:length(m3)
+    p = m3(:,i); p = log(p);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+    yu=[];
+    
+    for kk = 1:length(y)
+        yu = horzcat(yu,find(p==y(kk)));
+    end
+    c1 = intersect(yu,yy(:,11-v+1:end));
+    c1 = length(c1)/length(yy(:,11-v+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);
+%     ac1 = vertcat(ac1,y);
+%     for j = 1:length(y)
+%        [a,b] = (find(abs(m3-y(j))<eps)); %find(abs(X(:,1 )-17.9203)<eps)(find(abs(p-y(j))<eps));
+%        yy1 = yy(a);
+%       
+%     end 
+end
+%[a,b]=hist(ac,unique(ac));
+rrr = vertcat(rrr,c2);c2=[];
