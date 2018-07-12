@@ -1,5 +1,6 @@
 
 
+
 % global rrr 
 % rrr =[];c2=[];
 % %GMM
@@ -23,7 +24,7 @@
 
 
 
-
+rng default
 global rrr;global gv;global m3;
 rrr =[];c2=[];
 %GMM
