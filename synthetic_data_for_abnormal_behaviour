@@ -97,3 +97,48 @@ for tt = 1:4
     out_acc{tt} = rrr;
     rrr=[];
 end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%evaluate algorithms based on the temporal duration of abnormal movement.
+vb = [];
+for i = 1:length(out_acc)
+    vb = horzcat(vb, mean(out_acc{1,i},2));
+    
+end
+
+
+
+
+%evaluate algorithms based on the number agents with outliers across each
+%time window
+c1=[];c2=[];c3=[];c4=[];c5=[];
+
+for i = 1:length(out_acc)
+    gv = id_me{1,tt};gv = gv(2,:);
+    gv1 = out_acc{1,i};
+    
+    for j = 1:length(gv)
+        if gv(j)==1
+            c1 = horzcat(c1,gv1(:,j));
+        elseif gv(j)==2
+             c2 = horzcat(c2,gv1(:,j));
+             
+        elseif  gv(j)==3
+             c3 = horzcat(c3,gv1(:,j));
+             
+        elseif gv(j)==4
+            
+             c4 = horzcat(c4,gv1(:,j));
+        else 
+            
+             c5 = horzcat(c5,gv1(:,j));
+        end
+        
+    end
+    
+    
+end
+
+c1 = mean(c1,2);c2 = mean(c2,2);c3 = mean(c3,2);c4 = mean(c4,2);c5 = mean(c5,2);
