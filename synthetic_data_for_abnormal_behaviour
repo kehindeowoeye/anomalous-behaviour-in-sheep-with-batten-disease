@@ -28,13 +28,13 @@ for t = 1:length(wb)
      cd = randsample(1:11,u);%selects the id of the agents with abnormal movement.
      nncd = setdiff(1:11,cd);% gets the id of the normal ones
     
-     abn_time = wb(1)*600; good_time = 600-abn_time;%computes the proportion of time for normal an dabnormal movements.
+     abn_time = wb(1)*600; good_time = 600-abn_time;%computes the proportion of time for normal and abnormal movements.
           
         
      ghno = randsample(1:10,1);%selects the data bin for normal agents
      jk = setdiff(1:10,ghno);%computes the remaining bin available for selection
      ghno = vb{ghno};%selects the data bin for normal agents
-     ghan = vb{randsample(jk,1)};%selects the data bin for abnormal;
+     ghan = vb{randsample(jk,1)};%selects the data bin for abnormal different from normal;
      
      tapo = [];%tapo1 = zeros(1,length(nncd)*2);
      tapo1=[];
@@ -84,22 +84,25 @@ for i = 1:4
         end
         nm= horzcat(nm,nv');nv=[];
     end
-    allof_dist{i} =nm ;nm=[];
+    allof_dist{i} =nm;nm=[];
 end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-t1=[];t2=[];t3=[];t4=[];global rrr;out_acc={};rrr=[];global gv;global m3;
+t1=[];t2=[];t3=[];t4=[];global rrr;out_acc={};rrr=[];global gv;global m3;global uuu;
+fp={};
 for tt = 1:4
     gk = allof_dist{1,tt};gv = id_me{1,tt};gv = gv(2,:);
     m3 = gk;
     outlier_algo;
-    out_acc{tt} = rrr;
-    rrr=[];
+    out_acc{tt} = rrr;rrr=[];
+    fp{tt} = uuu;uuu=[];
+    
 end
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %evaluate algorithms based on the temporal duration of abnormal movement.
 vb = [];
@@ -109,11 +112,34 @@ for i = 1:length(out_acc)
 end
 
 
+vb1 = [];
+for i = 1:length(fp)
+    cn = fp{1,i};cn(find(isnan(cn)))= 0;
+    vb1 = horzcat(vb1, mean(cn,2));
+    
+end
+
+
+%confidence interval
+cf=[];cf1=[];
+for i = 1:4   
+   xx = out_acc{1,i};
+   for j = 1:size(xx,1)
+       x = xx(j,:);
+      SEM = std(x)/sqrt(length(x));               % Standard Error
+      ts = tinv([0.025  0.975],length(x)-1);      % T-Score
+      CI = mean(x) + ts*SEM;   
+      cf1 = vertcat(cf1,CI);
+   end    % Confidence Intervals
+   cf = vertcat(cf,cf1);cf1=[];
+end
+
 
 
 %evaluate algorithms based on the number agents with outliers across each
 %time window
 c1=[];c2=[];c3=[];c4=[];c5=[];
+cj = cell(1,5);cj{1,5} = [];
 
 for i = 1:length(out_acc)
     gv = id_me{1,tt};gv = gv(2,:);
@@ -121,19 +147,19 @@ for i = 1:length(out_acc)
     
     for j = 1:length(gv)
         if gv(j)==1
-            c1 = horzcat(c1,gv1(:,j));
+            cj{1} = horzcat(cj{1},gv1(:,j));
         elseif gv(j)==2
-             c2 = horzcat(c2,gv1(:,j));
+             cj{2} = horzcat(cj{2},gv1(:,j));
              
         elseif  gv(j)==3
-             c3 = horzcat(c3,gv1(:,j));
+             cj{3} = horzcat(cj{3},gv1(:,j));
              
         elseif gv(j)==4
             
-             c4 = horzcat(c4,gv1(:,j));
+            cj{4} = horzcat(cj{4},gv1(:,j));
         else 
             
-             c5 = horzcat(c5,gv1(:,j));
+            cj{5} = horzcat(cj{5},gv1(:,j));
         end
         
     end
@@ -141,4 +167,17 @@ for i = 1:length(out_acc)
     
 end
 
-c1 = mean(c1,2);c2 = mean(c2,2);c3 = mean(c3,2);c4 = mean(c4,2);c5 = mean(c5,2);
+
+bnx=[];
+for j = 1:length(cj)
+    x = cj{1,j};
+    for i = 1:size(x,1)
+        vn = x(i,:);
+        SEM = std(vn)/sqrt(length(vn)); 
+        ts = tinv([0.025  0.975],length(vn)-1); 
+        c1x = mean(vn) + ts*SEM;
+        
+    end
+    bnx = vertcat(bnx,c1x);
+end
+  
