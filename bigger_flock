@@ -1,4 +1,7 @@
 
+
+%This gets the appropriate number of groups in the flock using information criterion aic, bic.
+% remember to load the workspace  ground-truth .......
 rng default
 yp=[];
 for j = 1:size(m3,2)
@@ -30,11 +33,11 @@ xh{3} = yp;
 
 
 
-
+%use gaussian mixture first
 acc=[];b= LSG(:,2);
 data = m3;c = LSG(:,5);
 
-bb = xh{1,2};
+bb = xh{1,2};This selects the appropriate day, remember to use it.
 for j = 1:size(data,2)
     
   x = data(:,j);
@@ -54,7 +57,7 @@ ok'
  
  
 
-
+%use kmeans
 acc=[];b= LSG(:,2);
 data = m3;c = LSG(:,5);
 
