@@ -1,0 +1,153 @@
+
+
+%when the outliers are sampled from different distributions
+
+rng default
+
+global rrr;global gv;global m3;global uuu;
+rrr =[];c2=[];uuu=[];cb=[];kk = 2;
+%GMM
+acc=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:11;cd=[];cd1=[];
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);
+  gm = fitgmdist(x,kk,'RegularizationValue',0.1);
+  idx = cluster(gm,x);
+  for bb = 1:kk
+      lm{bb} =  find(idx==bb);
+  end
+  
+ for bb = 1:kk
+     cd = horzcat(cd,length(lm{1,bb}));
+ end 
+ 
+ mn = 1:kk ;
+ hy = find(cd == max(cd));
+ 
+ mn(hy)=[];
+ display(hy)
+ cd1 = horzcat(cd1,hy);
+ 
+ for bb = 1:length(mn)
+    hy1 = lm{1,mn(bb)};
+    acc = vertcat(acc,yy(hy1));
+ end
+ lm={};cd=[];
+  
+  
+    c1 = intersect(acc,yy(:,11-gv(j)+1:end));
+    lu = (length(acc)-length(c1))/length(acc);lu = lu*100;
+    c1 = length(c1)/length(yy(:,11-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+    acc=[];
+  
+end
+
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+
+acc=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:11;kk = 2;
+for j = 1:size(data,2)
+    x = data(:,j);
+    k1 = kmeans(x,kk);
+    
+    for bb = 1:kk
+      lm{bb} =  find(k1==bb);
+    end
+  
+     for bb = 1:kk
+         cd = horzcat(cd,length(lm{1,bb}));
+     end 
+ 
+     mn = 1:kk ;
+     hy = find(cd == max(cd));
+     mn(hy)=[];
+     display(hy)
+     cd1 = horzcat(cd1,hy);
+
+     for bb = 1:length(mn)
+        hy1 = lm{1,mn(bb)};
+        acc = vertcat(acc,yy(hy1));
+     end
+     lm={};cd=[];
+
+  
+  
+    c1 = intersect(acc,yy(:,11-gv(j)+1:end));
+    lu = (length(acc)-length(c1))/length(acc) ;
+  
+    lu = lu*100;
+    c1 = length(c1)/length(yy(:,11-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+    acc=[];
+end
+
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+
+%yy = LSG(:,2);plain m3
+yy = 1:11;data = m3;
+ac=[];ac1 =[]; 
+for i = 1:size(data,2)
+    p = data(:,i);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+    yu=[];
+    
+    for kk = 1:length(y)
+        yu = horzcat(yu,find(p==y(kk)));
+    end
+    
+    c1 = intersect(yu,yy(:,11-gv(j)+1:end));
+    disp(length(yu)-length(c1));
+
+    lu = (length(yu)-length(c1))/length(yu);
+  
+    lu = lu*100;
+    
+    c1 = length(c1)/length(yy(:,11-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+
+end
+%[a,b]=hist(ac,unique(ac));
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+
+%yy = LSG(:,2);log of m3
+yy = 1:11;c2=[];
+ac=[];ac1 =[]; 
+for i = 1:size(data,2)
+    p = data(:,i); p = log(p);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+    yu=[];
+    
+    for kk = 1:length(y)
+        yu = horzcat(yu,find(p==y(kk)));
+    end
+    c1 = intersect(yu,yy(:,11-gv(j)+1:end));
+    lu = (length(yu)-length(c1))/length(yu) ;lu = lu*100;
+    c1 = length(c1)/length(yy(:,11-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+ 
+end
+%[a,b]=hist(ac,unique(ac));
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+
+
+
