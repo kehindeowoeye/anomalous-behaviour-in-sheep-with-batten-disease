@@ -1,0 +1,23 @@
+%Here nearest neighbour is ten on line 14
+
+m4 = csvread('accompanying04all.csv');
+m3 = csvread('new04all.csv');m3 = m3';
+
+la = [];ak = 0:113:1243;
+for i = 2:12
+    ba = m4(ak(i-1)+1:ak(i),:);
+    la = horzcat(la,ba);
+end
+
+
+la2=[];ak1 = 0:79:869;up=[];
+for k = 2:12
+    ca =  la(:,ak1(k-1)+1:ak1(k));
+    ca = ca(:,1:11);
+    for j = 1:size(ca,1)
+        m31 = m3(j,:);
+        up = vertcat(up,m31(:,ca(j,:)));
+    end 
+    la2 = horzcat(la2,up);up=[];
+end 
+
