@@ -1,0 +1,79 @@
+r1 =[];c2=[];
+%GMM
+acc=[];yu=[];
+ 
+gh = 0:4:size(data,2)-2;
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);
+  gm = fitgmdist(x,2,'RegularizationValue',0.1);
+  idx = cluster(gm,x);
+  v1 = (find(idx==1));
+  v2 = (find(idx==2));
+  if length(v1)<length(v2)
+        acc = vertcat(acc,b(v1));
+        yu = vertcat(yu, x(v1,:));
+  elseif length(v2)<length(v1)
+        acc = vertcat(acc, b(v2));
+        yu = vertcat(yu, x(v2,:));
+  else
+  end
+  
+  
+end
+ 
+ 
+ 
+ 
+ 
+%kmeans
+acc=[];gh = 0:4:size(data,2)-2;
+for j = 1:size(data,2)
+     x = data(:,j);
+    kk = kmeans(x,2);
+    v1 = (find(kk==1));
+    v2 = (find(kk==2));
+ 
+     if length(v1)<length(v2)
+        acc = vertcat(acc,b(v1));
+        yu = vertcat(yu, x(v1,:));
+  elseif length(v2)<length(v1)
+        acc = vertcat(acc, b(v2));
+        yu = vertcat(yu, x(v2,:));
+  else
+  end
+end
+histogram(yu)
+xlabel('outlier values (log of distance)')
+ylabel('Frequency')
+ 
+ 
+ 
+ 
+%yy = LSG(:,2);log of m3
+yy = 1:11;c2=[];acc=[];yu=[];
+ac=[];ac1 =[]; 
+for i = 1:size(data,2)
+    p = data(:,i);p = log(p);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+   
+    
+   
+    yu = vertcat(yu,y);
+  
+    
+ 
+   
+end
+%[a,b]=hist(ac,unique(ac));
+r4=[];r4 = vertcat(r4,c2);c2=[];
+histogram(yu)
+xlabel('outlier values (distance in meters)')
+ylabel('Frequency')
+ 
