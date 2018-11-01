@@ -196,3 +196,47 @@ for j = 1:length(cj)
     bnx = vertcat(bnx,c1x);
 end
   
+cno = [];
+for i = 1:length(cj)
+    cno = horzcat(cno, mean(cj{1,i},2));
+    
+end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+c1=[];c2=[];c3=[];c4=[];c5=[];
+cj = cell(1,5);cj{1,5} = [];
+
+for i = 1:length(fp)
+    gv = id_me{1,tt};gv = gv(2,:);
+    gv1 = fp{1,i};
+    
+    for j = 1:length(gv)
+        if gv(j)==1
+            cj{1} = horzcat(cj{1},gv1(:,j));
+        elseif gv(j)==2
+             cj{2} = horzcat(cj{2},gv1(:,j));
+             
+        elseif  gv(j)==3
+             cj{3} = horzcat(cj{3},gv1(:,j));
+             
+        elseif gv(j)==4
+            
+            cj{4} = horzcat(cj{4},gv1(:,j));
+        else 
+            
+            cj{5} = horzcat(cj{5},gv1(:,j));
+        end
+        
+    end
+    
+    
+end
+
+
+
+cnofp = [];
+for i = 1:length(cj)
+    cnofp = horzcat(cnofp, mean(cj{1,i},2));
+    
+end
