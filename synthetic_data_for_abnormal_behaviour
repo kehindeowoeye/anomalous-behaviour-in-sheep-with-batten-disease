@@ -1,5 +1,7 @@
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%vb1 is false positives and ca is it's confidence interval for temporal evaluation.
+%vb is accuraccy and cf its confidence interval for temporal evaluation.
 % %synthetic data for outlier detection.
 
 mu = [0 0;0.0001 0.0001;0.001 0.001;0.01 0.01;0.1 0.1;...
@@ -134,6 +136,19 @@ for i = 1:4
    cf = vertcat(cf,cf1);cf1=[];
 end
 
+
+ca=[];cf1=[];
+for i = 1:4   
+   xx = fp{1,i};
+   for j = 1:size(xx,1)
+       x = xx(j,:);x(find(isnan(x)))= 0;
+      SEM = std(x)/sqrt(length(x));               % Standard Error
+      ts = tinv([0.025  0.975],length(x)-1);      % T-Score
+      CI = mean(x) + ts*SEM;   
+      cf1 = vertcat(cf1,CI);
+   end    % Confidence Intervals
+   ca = vertcat(ca,cf1);cf1=[];
+end
 
 
 %evaluate algorithms based on the number agents with outliers across each
