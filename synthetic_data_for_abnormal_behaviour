@@ -2,8 +2,8 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %vb1 is false positives and ca is it's confidence interval for temporal evaluation.
 %vb is accuraccy and cf its confidence interval for temporal evaluation.
-%cno is accuraccy for no of agents
-%cnofp is false positives for number of agents.
+%cno is accuraccy for no of agents while bnx is the CI
+%cnofp is false positives for number of agents while bnx1 is the CI.
 % %synthetic data for outlier detection.
 
 mu = [0 0;0.0001 0.0001;0.001 0.001;0.01 0.01;0.1 0.1;...
