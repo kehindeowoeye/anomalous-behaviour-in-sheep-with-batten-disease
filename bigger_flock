@@ -6,8 +6,8 @@ rng default
 yp=[];
 for j = 1:size(m3,2)
     acc = m3(:,j);
-    AIC = zeros(1,10);
-    obj = cell(1,10);
+    AIC = zeros(1,20);
+    obj = cell(1,20);
 
     for k = 1:20
       obj{k} = fitgmdist(acc,k,'RegularizationValue',0.1);
