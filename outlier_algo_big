@@ -1,0 +1,68 @@
+rng default;
+global rrr;global gv;global m3;global uuu;
+rrr =[];c2=[];uuu=[];cb=[];
+
+%GMM
+acca=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:80;
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);acc = x;
+  AIC = zeros(1,20);
+  obj = cell(1,20);
+   for k = 1:20
+      obj{k} = fitgmdist(acc,k,'RegularizationValue',0.1);
+      AIC(k)= obj{k}.AIC;
+   end
+  [minAIC,numComponents] = min(AIC);yp = numComponents;
+   
+  gm = fitgmdist(acc,yp,'RegularizationValue',0.1);
+  idx = cluster(gm,acc);
+  uv = unique(idx);n = histc(idx,uv);[m1,m2] = min(n);minmode = uv(m2);
+  acca = vertcat(acca,yy(find(idx==minmode)));
+  
+  
+  
+    c1 = intersect(acca,yy(:,80-gv(j)+1:end));
+    lu = (length(acca)-length(c1))/length(acca);lu = lu*100;
+    c1 = length(c1)/length(yy(:,80-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+    acca=[];
+  
+end
+
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+acca=[];data = m3;gh = 0:4:size(data,2)-2;yy=1:80;
+for j = 1:size(data,2)
+  %x = data(:,gh(j)+1:gh(j+1));
+  x = data(:,j);acc = x;
+  AIC = zeros(1,20);
+  obj = cell(1,20);
+   for k = 1:20
+      obj{k} = fitgmdist(acc,k,'RegularizationValue',0.1);
+      AIC(k)= obj{k}.AIC;
+   end
+  [minAIC,numComponents] = min(AIC);yp = numComponents;
+  gm = kmeans(acc,yp);
+  uv = unique(idx);n = histc(idx,uv);[m1,m2] = min(n);minmode = uv(m2);
+  acca = vertcat(acca,yy(find(idx==minmode)));
+  
+  
+  
+    c1 = intersect(acca,yy(:,80-gv(j)+1:end));
+    lu = (length(acca)-length(c1))/length(acca) ;
+  
+    lu = lu*100;
+    c1 = length(c1)/length(yy(:,80-gv(j)+1:end));c1 = c1*100;
+    c2 = horzcat(c2,c1);cb = horzcat(cb,lu);
+    acca=[];
+end
+
+rrr = vertcat(rrr,c2);uuu = vertcat(uuu,cb);c2=[];cb=[];
+
+
+
+
+
+
