@@ -1,0 +1,135 @@
+
+
+acc_vb = 0;
+acc_cf=0;
+acc_vb1 = 0;
+acc_cff = 0;
+acc_vb12=0;
+acc_bnx=0;
+acc_vb22=0;
+acc_bnxfp=0;
+for iii = 1:10
+    synthetic_data_biggerflock_sample2distr
+    acc_vb  = acc_vb + vb;
+    acc_cf = acc_cf + cf;
+    acc_vb1 = acc_vb1 + vb1;
+    acc_cff  = acc_cff + cff;
+    acc_vb12 = acc_vb12 + vb12;
+    acc_bnx = acc_bnx + bnx;
+    acc_vb22 = acc_vb22 + vb22;
+    acc_bnxfp = acc_bnxfp + bnxfp;
+end
+acc_vb = acc_vb/100;
+acc_cf= acc_cf/100;
+acc_vb1 = acc_vb1/100;
+acc_cff = acc_cff/100;
+acc_vb12 = acc_vb12/100;
+acc_bnx= acc_bnx/100;
+acc_vb22= acc_vb22/100;
+acc_bnxfp= acc_bnxfp/100;
+
+acc_vb = acc_vb*10;acc_cf= acc_cf*10;acc_vb1 = acc_vb1*10;acc_cff = acc_cff*10;
+acc_vb12 = acc_vb12*10;acc_bnx= acc_bnx*10;acc_vb22= acc_vb22*10;acc_bnxfp= acc_bnxfp*10;
+
+
+
+
+
+
+acc_vb = 0;
+acc_cf=0;
+acc_vb1 = 0;
+acc_ca = 0;
+acc_cno=0;
+acc_bnx=0;
+acc_cnofp=0;
+acc_bnx1=0;
+for iii = 1:10
+    synthetic_data_biggerflock
+    acc_vb = acc_vb + vb;
+    acc_cf  = acc_cf + cf;
+    acc_vb1  = acc_vb1 + vb1;
+    acc_ca = acc_ca + ca;
+    acc_cno = acc_cno + cno;
+    acc_bnx = acc_bnx + bnx;
+    acc_cnofp = acc_cnofp + cnofp;
+    acc_bnx1 = acc_bnx1 + bnx1;
+    iii
+end
+
+acc_vb = acc_vb/10;
+acc_cf=acc_cf/10;
+acc_vb1 = acc_vb1/10;
+acc_ca = acc_ca/10;
+acc_cno=acc_cno/10;
+acc_bnx= acc_bnx/10;
+acc_cnofp=acc_cnofp/10;
+acc_bnx1=acc_bnx1/10;
+
+
+
+
+
+acc_vb = 0;
+acc_cf=0;
+acc_vb1 = 0;
+acc_cff = 0;
+acc_vb12=0;
+acc_bnx=0;
+acc_vb22=0;
+acc_bnxfp=0;
+for iii = 1:10
+    synthetic_data_papers
+    acc_vb = acc_vb + vb;
+    acc_cf  = acc_cf + cf;
+    acc_vb1  = acc_vb1 + vb1;
+    acc_cff = acc_cff + cff;
+    acc_vb12 = acc_vb12 + vb12;
+    acc_bnx = acc_bnx + bnx;
+    acc_vb22 = acc_vb22 + vb22;
+    acc_bnxfp = acc_bnxfp + bnxfp;
+    iii
+end
+
+acc_vb = acc_vb/10;
+acc_cf=acc_cf/10;
+acc_vb1 = acc_vb1/10;
+acc_cff = acc_cff/10;
+acc_vb12=acc_vb12/10;
+acc_bnx= acc_bnx/10;
+acc_vb22=acc_vb22/10;
+acc_bnxfp=acc_bnxfp/10;
+
+
+
+
+
+acc_vb = 0;
+acc_cf=0;
+acc_vb1 = 0;
+acc_cff = 0;
+acc_vb12=0;
+acc_bnx=0;
+acc_vb22=0;
+acc_bnxfp=0;
+for iii = 1:10
+    out_synth_codes
+    acc_vb = acc_vb + vb;
+    acc_cf  = acc_cf + cf;
+    acc_vb1  = acc_vb1 + vb1;
+    acc_cff = acc_cff + cff;
+    acc_vb12 = acc_vb12 + vb12;
+    acc_bnx = acc_bnx + bnx;
+    acc_vb22 = acc_vb22 + vb22;
+    acc_bnxfp = acc_bnxfp + bnxfp;
+    iii
+end
+
+acc_vb = acc_vb/10;
+acc_cf=acc_cf/10;
+acc_vb1 = acc_vb1/10;
+acc_cff = acc_cff/10;
+acc_vb12=acc_vb12/10;
+acc_bnx= acc_bnx/10;
+acc_vb22=acc_vb22/10;
+acc_bnxfp=acc_bnxfp/10;
