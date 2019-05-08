@@ -19,14 +19,14 @@ for iii = 1:10
     acc_vb22 = acc_vb22 + vb22;
     acc_bnxfp = acc_bnxfp + bnxfp;
 end
-acc_vb = acc_vb/100;
-acc_cf= acc_cf/100;
-acc_vb1 = acc_vb1/100;
-acc_cff = acc_cff/100;
-acc_vb12 = acc_vb12/100;
-acc_bnx= acc_bnx/100;
-acc_vb22= acc_vb22/100;
-acc_bnxfp= acc_bnxfp/100;
+acc_vb = acc_vb/10;
+acc_cf= acc_cf/10;
+acc_vb1 = acc_vb1/10;
+acc_cff = acc_cff/10;
+acc_vb12 = acc_vb12/10;
+acc_bnx= acc_bnx/10;
+acc_vb22= acc_vb22/10;
+acc_bnxfp= acc_bnxfp/10;
 
 acc_vb = acc_vb*10;acc_cf= acc_cf*10;acc_vb1 = acc_vb1*10;acc_cff = acc_cff*10;
 acc_vb12 = acc_vb12*10;acc_bnx= acc_bnx*10;acc_vb22= acc_vb22*10;acc_bnxfp= acc_bnxfp*10;
