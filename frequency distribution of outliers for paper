@@ -27,8 +27,8 @@ for j = 1:size(data,2)
   
 end
 histogram(yu)
-xlabel('Outlier values (distance in meters)')
-ylabel('Frequency')
+xlabel('Outlier values (distance in meters)','FontSize', 14)
+ylabel('Frequency','FontSize', 14)
  
  
  
@@ -52,8 +52,8 @@ for j = 1:size(data,2)
   end
 end
 histogram(yu)
-xlabel('Outlier values (distance in meters)')
-ylabel('Frequency')
+xlabel('Outlier values (distance in meters)','FontSize', 14)
+ylabel('Frequency','FontSize', 14)
  
  
 %yy = LSG(:,2);log of m3
@@ -80,8 +80,8 @@ end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
 histogram(yu)
-xlabel('outlier values (distancein meters)')
-ylabel('Frequency')
+xlabel('outlier values (distancein meters)','FontSize', 14)
+ylabel('Frequency','FontSize', 14)
  
  
  
@@ -109,6 +109,6 @@ end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
 histogram(yu)
-xlabel('outlier values (log of distance)')
-ylabel('Frequency')
+xlabel('outlier values (log of distance)','FontSize', 14)
+ylabel('Frequency','FontSize', 14)
  
