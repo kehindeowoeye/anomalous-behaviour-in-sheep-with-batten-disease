@@ -62,7 +62,7 @@ ylabel('Frequency','FontSize', 14)
 yy = 1:11;c2=[];acc=[];yu=[];
 ac=[];ac1 =[]; 
 for i = 1:size(data,2)
-    p = data(:,i);p = log(p);
+    p = data(:,i);
     Q1 = quantile(p,0.25);
     Q3 = quantile(p,0.75);
     Spread = 1.5*(Q3-Q1);
@@ -83,7 +83,7 @@ end
 r4=[];r4 = vertcat(r4,c2);c2=[];
 figure
 histogram(yu)
-xlabel('Outlier values (distancein meters)','FontSize', 14)
+xlabel('Outlier values (distance in meters)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
  
  
