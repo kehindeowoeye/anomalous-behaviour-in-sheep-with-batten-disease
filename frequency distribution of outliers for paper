@@ -26,6 +26,7 @@ for j = 1:size(data,2)
   
   
 end
+figure
 histogram(yu)
 xlabel('Outlier values (distance in meters)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
@@ -51,6 +52,7 @@ for j = 1:size(data,2)
   else
   end
 end
+figure
 histogram(yu)
 xlabel('Outlier values (distance in meters)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
@@ -79,6 +81,7 @@ for i = 1:size(data,2)
 end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
+figure
 histogram(yu)
 xlabel('outlier values (distancein meters)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
@@ -108,6 +111,7 @@ for i = 1:size(data,2)
 end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
+figure
 histogram(yu)
 xlabel('outlier values (log of distance)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
