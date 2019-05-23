@@ -1,6 +1,11 @@
+data = xlsread('new27');
+data = data';
+
+
 r1 =[];c2=[];
 %GMM
 acc=[];yu=[];
+
  
 gh = 0:4:size(data,2)-2;
 for j = 1:size(data,2)
@@ -11,10 +16,10 @@ for j = 1:size(data,2)
   v1 = (find(idx==1));
   v2 = (find(idx==2));
   if length(v1)<length(v2)
-        acc = vertcat(acc,b(v1));
+        %acc = vertcat(acc,b(v1));
         yu = vertcat(yu, x(v1,:));
   elseif length(v2)<length(v1)
-        acc = vertcat(acc, b(v2));
+        %acc = vertcat(acc, b(v2));
         yu = vertcat(yu, x(v2,:));
   else
   end
