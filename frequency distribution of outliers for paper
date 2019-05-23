@@ -26,6 +26,8 @@ for j = 1:size(data,2)
   
   
 end
+xlabel('Outlier values (distance in meters)')
+ylabel('Frequency')
  
  
  
@@ -49,9 +51,36 @@ for j = 1:size(data,2)
   end
 end
 histogram(yu)
-xlabel('outlier values (log of distance)')
+xlabel('Outlier values (distance in meters)')
 ylabel('Frequency')
  
+ 
+%yy = LSG(:,2);log of m3
+yy = 1:11;c2=[];acc=[];yu=[];
+ac=[];ac1 =[]; 
+for i = 1:size(data,2)
+    p = data(:,i);p = log(p);
+    Q1 = quantile(p,0.25);
+    Q3 = quantile(p,0.75);
+    Spread = 1.5*(Q3-Q1);
+    MaxValue = Q3 + Spread;
+    MinValue = Q1 - Spread;
+    y = p(p>MaxValue | p<MinValue);
+    
+   
+    
+   
+    yu = vertcat(yu,y);
+  
+    
+ 
+   
+end
+%[a,b]=hist(ac,unique(ac));
+r4=[];r4 = vertcat(r4,c2);c2=[];
+histogram(yu)
+xlabel('outlier values (distancein meters)')
+ylabel('Frequency')
  
  
  
@@ -79,6 +108,6 @@ end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
 histogram(yu)
-xlabel('outlier values (distance in meters)')
+xlabel('outlier values (log of distance)')
 ylabel('Frequency')
  
