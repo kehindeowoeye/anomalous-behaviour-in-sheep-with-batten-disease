@@ -83,7 +83,7 @@ end
 r4=[];r4 = vertcat(r4,c2);c2=[];
 figure
 histogram(yu)
-xlabel('outlier values (distancein meters)','FontSize', 14)
+xlabel('Outlier values (distancein meters)','FontSize', 14)
 ylabel('Frequency','FontSize', 14)
  
  
