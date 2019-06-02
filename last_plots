@@ -1,0 +1,14 @@
+
+r1 = normrnd(3,10,[5000,2]);
+[a,b] = kmeans(r1,2);
+gscatter(r1(:,1),r1(:,2),a)
+b = gca; legend(b,'off');
+
+
+mu = [1 2;-2 -5;-7 -9];
+sigma = cat(3,[2 0;0 .5],[1 0;0 1], [3 0;0 0.1]);
+p = ones(1,3)/2;
+gm = gmdistribution(mu,sigma,p);
+
+gmPDF = @(x,y)reshape(pdf(gm,[x(:) y(:)]),size(x));
+fcontour(gmPDF,[-15 15]);
