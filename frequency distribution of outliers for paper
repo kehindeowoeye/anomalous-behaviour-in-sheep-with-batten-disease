@@ -6,7 +6,7 @@ alldata{4} = xlsread('new29all');alldata{5} = xlsread('new30all');alldata{6} = (
 r1 =[];c2=[];
 %GMM
 acc=[];yu=[];
-for da = 1:6
+for da = 1:3
 data = alldata{da};
 data = data';
 
@@ -47,7 +47,7 @@ ylabel('Frequency','fontweight','bold','FontSize', 14)
 
 r1 =[];c2=[];
 acc=[];yu=[];
-for da = 1:6
+for da = 1:3
 data = alldata{da};
 data = data';
  
@@ -80,7 +80,7 @@ ylabel('Frequency','fontweight','bold','FontSize', 14)
 %yy = LSG(:,2);log of m3
 yy = 1:11;c2=[];acc=[];yu=[];
 ac=[];ac1 =[]; 
-for da = 1:6
+for da = 1:3
 data = alldata{da};
 data = data';
 for i = 1:size(data,2)
@@ -115,7 +115,7 @@ ylabel('Frequency','fontweight','bold','FontSize', 14)
 yy = 1:11;c2=[];acc=[];yu=[];
 ac=[];ac1 =[]; 
 
-for da = 1:6
+for da = 1:3
 data = alldata{da};
 data = data';
 for i = 1:size(data,2)
