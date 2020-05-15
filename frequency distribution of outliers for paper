@@ -1,10 +1,17 @@
-data = xlsread('new27');
-data = data';
+all_data = {};
+alldata{1} = xlsread('new22');alldata{2} = xlsread('new24');alldata{3} = xlsread('new27');
+alldata{4} = xlsread('new29all');alldata{5} = xlsread('new30all');alldata{6} = (csvread('new04all.csv'))';
 
 
 r1 =[];c2=[];
 %GMM
 acc=[];yu=[];
+for da = 1:6
+data = alldata{da};
+data = data';
+
+
+
 
  
 gh = 0:4:size(data,2)-2;
@@ -26,14 +33,23 @@ for j = 1:size(data,2)
   
   
 end
+
+end
+
 figure
 histogram(yu)
 xlabel('Outlier values (distance in metres)','fontweight','bold','FontSize', 14)
 ylabel('Frequency','fontweight','bold','FontSize', 14)
  
  
- 
- 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+r1 =[];c2=[];
+acc=[];yu=[];
+for da = 1:6
+data = alldata{da};
+data = data';
  
 %kmeans
 acc=[];gh = 0:4:size(data,2)-2;
@@ -52,15 +68,21 @@ for j = 1:size(data,2)
   else
   end
 end
+
+end
 figure
 histogram(yu)
 xlabel('Outlier values (distance in metres)','fontweight','bold','FontSize', 14)
 ylabel('Frequency','fontweight','bold','FontSize', 14)
  
  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %yy = LSG(:,2);log of m3
 yy = 1:11;c2=[];acc=[];yu=[];
 ac=[];ac1 =[]; 
+for da = 1:6
+data = alldata{da};
+data = data';
 for i = 1:size(data,2)
     p = data(:,i);
     Q1 = quantile(p,0.25);
@@ -79,6 +101,7 @@ for i = 1:size(data,2)
  
    
 end
+end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
 figure
@@ -87,10 +110,14 @@ xlabel('Outlier values (distance in metres)','fontweight','bold','FontSize', 14)
 ylabel('Frequency','fontweight','bold','FontSize', 14)
  
  
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %yy = LSG(:,2);log of m3
 yy = 1:11;c2=[];acc=[];yu=[];
 ac=[];ac1 =[]; 
+
+for da = 1:6
+data = alldata{da};
+data = data';
 for i = 1:size(data,2)
     p = data(:,i);p = log(p);
     Q1 = quantile(p,0.25);
@@ -109,10 +136,10 @@ for i = 1:size(data,2)
  
    
 end
+end
 %[a,b]=hist(ac,unique(ac));
 r4=[];r4 = vertcat(r4,c2);c2=[];
 figure
 histogram(yu)
 xlabel('Outlier values (log of distance)','fontweight','bold','FontSize', 14)
 ylabel('Frequency','fontweight','bold','FontSize', 14)
- 
