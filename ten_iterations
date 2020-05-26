@@ -103,7 +103,7 @@ acc_bnxfp=acc_bnxfp/10;
 
 
 
-
+# Small flock when abnormal sampling is from two distributions 
 acc_vb = 0;
 acc_cf=0;
 acc_vb1 = 0;
