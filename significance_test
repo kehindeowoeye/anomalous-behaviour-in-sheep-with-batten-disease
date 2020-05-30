@@ -91,6 +91,7 @@ ab5 = ab5';
  
 az1=[];az2=[];az3=[];az4=[];result=[];result1=[];tot = {};
 for m = 1:4
+az1 = [];
 az1 = vertcat(az1,ab(m,:),ab1(m,:),ab2(m,:),ab3(m,:),ab4(m,:),ab5(m,:));
 for i = 1:size(az1,2)
     for j = 1:size(az1,2)
@@ -160,14 +161,16 @@ ab8 = ab8';
 
 az1=[];az2=[];az3=[];az4=[];result=[];result1=[];tot_={};
 for m = 1:2
-az1 = vertcat(az1,ab6(m,:),ab7(m,:),ab8(m,:));
+    az1 = [];
+az1 = vertcat(az1,az1,ab(m,:),ab1(m,:),ab2(m,:), ab6(m,:),ab7(m,:),ab8(m,:));
 for i = 1:size(az1,2)
     for j = 1:size(az1,2)
         bn = az1(:,i);%bn = bn(bn~=0);
         bj = az1(:,j);%bj = bj(bj~=0);
         %[p1,p2,p3] = anova1(bn,bj,'off');
         %result = horzcat(result,p2{2,6});
-        [h,p,ci,stats] = ttest2(az1(:,i),az1(:,j));
+        %[h,p,ci,stats] = ttest2(az1(:,i),az1(:,j));
+        [p,h] = signrank(az1(:,i),az1(:,j));
         result = horzcat(result,p);
     end
     result1 = vertcat(result1,result);
